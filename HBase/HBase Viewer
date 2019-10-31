@@ -1,0 +1,49 @@
+# HBase Viewer
+
+## 1. Table Viewer
+  ### 1.0. HBase Web UI
+  * HBase 자체 WebUI 제공.
+    <br>standalone의 경우 16087 port. 상황에 따라 다를 수 있음
+    <br>table description 확인가능.
+  ### 1.1. Apache Ambari
+  * Windows 지원 X
+  ### 1.2. HBase Explorer
+  * HBase 0.20.2만 가능
+  ### 1.3. HBase Tool for Kakao
+  * ~ HBase 1.2까지 지원
+  ### 1.4. HAdmin
+  * Standalone 시 Zookeeper 오류
+  ### 1.5. Apache Zeppelin
+  
+
+## 2. <s>필요사항</s>
+  * Table Viewer가 존재하는지 여부
+  * Web에 뿌려지는 진동센서 Data의 TABLE, COLUMN 명, 대략적인 Data 양
+  * HBase, Hadoop, Pheonix 각각의 Version
+  * HBase, Pheonix가 실행되는 PC의 OS
+
+## 3. Table 정보
+  **테이블 명 : IIOT_TBL_TAG_DATA_HISTORY_DETAIL**
+
+
+  |COLUMN|DESCRIPTION|
+  |:-:|:-:|
+  |TXN_TAG_ID|트랜잭션ID|
+  |TAG_ID|TAG ID|
+  |TENANT_ID|테넌트ID|
+  |DEVICE_ID|디바이스ID|
+  |TAG_VALUE|TAG 값|
+  |TAG_VALUE_TXN_TIME|TAG History 처리시간|
+  |||
+
+```sql
+CREATE TABLE IF NOT EXISTS IIOT_TBL_TAG_DATA_HISTORY_DETAIL (
+  TXN_TAG_ID CHAR(20) NOT NULL,
+  TAG_ID VARCHAR NOT NULL,
+  TENANT_ID VARCHAR,
+  DEVICE_ID VARCHAR,
+  TAG_VALUE VARCHAR,
+  TAG_VALUE_TXN_TIME Date,
+  CONSTRAINT my_pk PRIMARY KEY (TXN_TAG_ID, TAG_ID)
+);
+```
